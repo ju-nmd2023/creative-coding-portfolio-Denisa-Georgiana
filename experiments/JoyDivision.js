@@ -1,38 +1,21 @@
-const container = document.getElementById("p5container");
+/*
+----- Coding Tutorial by Patt Vira ----- 
+Name: Unknown Pleasures by Joy Division
+Video Tutorial: https://youtu.be/PttnJmbBKnY
+----------------------------------------
+*/
 
-//canvas settings
-const canvas = document.createElement("canvas");
-canvas.style.display = "block";
-container.appendChild(canvas); 
-const ctx = canvas.getContext("2d");
+let offset = 0; let inc = 0.05;
+let sidesValue = 100; let num = 70;
+let marginX = 50;let marginY = 50; 
+let spacing; 
 
-//canvas visual
-function drawBackground(width, height) {
-    ctx.clearRect(0, 0, width, height);
-    ctx.fillStyle = "#000";
-    ctx.fillRect(0, 0, width, height);
-
-    //line visuals
-    ctx.strokeStyle = "#fff";
-    ctx.lineWidth = 0.8;
-    ctx.lineJoin = "round";
-    ctx.lineCap = "round"; 
-
-    //spacing between vertical rows
-    const step = Math.max(6, Math.floor(height / 55));
-    const lines = [];
-
-    //creating grid points for horizontal lines
-    for (let y = step; y <= height - step; y += step) {
-        const line = [];
-        for (let x = step; x <= width - step; x += step) {
-            const distanceToCenter = Math.abs(x - width / 2);
-            const variance = Math.max(width / 2 - 50 - distanceToCenter, 0);
-            const random = Math.random() * (variance / 8);
-            line.push({ x, y: y + random});
-        }
-        lines.push(line); 
-    }
+function setup() {
+    createCanvas(2068, 940);
+    spacing = (height - marginY*2) / (num-1); 
 }
 
-
+function draw() {
+    background(0);
+    let offset = 0; 
+}
