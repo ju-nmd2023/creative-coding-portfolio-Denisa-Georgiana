@@ -6,12 +6,15 @@ Video Tutorial: https://youtu.be/9mucfJmwupk
 */
 
 let ptsPerRing = 150;
-let minR = 30; let maxR = 1100;
-let numRings = 170;
-let shapeSize = 5;
+let minR = 10; let maxR = 1100;
+let numRings = 190;
+let shapeSize = 15;
 let distortionFactor = 0.1;
 let freqFactor = 0.02;
 let ampFactor = 0.1;
+
+//colours
+let startColor, endColor; 
 
 //loading the image
 let img; 
@@ -22,10 +25,12 @@ function preload() {
 function setup() {
     createCanvas (2068, 940);
     rectMode(CENTER);
+    startColor = color(127,255,0);
+    endColor = color(1191, 64, 191);
 }
 
 function draw() {
-    background(220);
+    background(50);
     noStroke();
     fill(0);
     //translating the origin of the cirle
@@ -54,6 +59,12 @@ function draw() {
 
             let x = -r*cos(distortedAngle);
             let y = r*sin(distortedAngle);
+
+            let xCart = x + width/2; 
+            let amount = map(xCart, 0, width, 0, 1);
+            //to find the color values of the two colors
+            let shapeColor = lerpColor(startColor, endColor, amount);
+            fill(shapeColor); 
             rect(x, y, shapeSize);
         }
     }
