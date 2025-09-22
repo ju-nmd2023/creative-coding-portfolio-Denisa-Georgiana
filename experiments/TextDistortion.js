@@ -5,8 +5,8 @@ Video Tutorial: https://youtu.be/9mucfJmwupk
 ----------------------------------------
 */
 
-let ptsPerRing = 200;
-let minR = 50; let maxR = 1100;
+let ptsPerRing = 150;
+let minR = 30; let maxR = 1100;
 let numRings = 170;
 let shapeSize = 5;
 let distortionFactor = 0.1;
@@ -36,7 +36,7 @@ function draw() {
         for (let j=0; j<ptsPerRing; j++) {
             let angle = TWO_PI/ptsPerRing * j;
           
-            let distortedAngle = angle + ampFactor*sin(freqFactor*r);
+            let distortedAngle = angle + ampFactor*sin(freqFactor*r + frameCount * 0.8);
             
             //modulo horizontal repeat text horizontal
             let repeatX = 1; 
@@ -58,6 +58,6 @@ function draw() {
         }
     }
    
-    noLoop();
+    //noLoop();
 
 }
