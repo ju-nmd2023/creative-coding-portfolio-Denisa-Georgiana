@@ -5,16 +5,23 @@ Video Tutorial: https://youtu.be/9mucfJmwupk
 ----------------------------------------
 */
 
-let ptsPerRing = 100;
-let minR = 90; let maxR = 2068;
-let numRings = 250;
+let ptsPerRing = 200;
+let minR = 90; let maxR = 500;
+let numRings = 100;
 let shapeSize = 5;
 let distortionFactor = 0.1;
 let freqFactor = 0.02;
-let ampFactor = 0.2;
+let ampFactor = 0.1;
+
+//loading the image
+let img; 
+function preload() {
+    img = loadImage("denisa.png");
+}
 
 function setup() {
     createCanvas (2068, 940);
+    rectMode(CENTER);
 }
 
 function draw() {
@@ -28,12 +35,22 @@ function draw() {
         let r = minR + ((maxR - minR) / numRings) * i;
         for (let j=0; j<ptsPerRing; j++) {
             let angle = TWO_PI/ptsPerRing * j;
-            //let distortedAngle = angle + r * distortionFactor;
+          
             let distortedAngle = angle + ampFactor*sin(freqFactor*r);
-            let x = r*cos(distortedAngle);
+            //image mapping points
+            let refX = int(map(angle, 0, TWO_PI, 0, img.width));
+            let sampleY = (r-minR) / (maxR - minR);
+            let refY = int(map(sampleY, 0, 1, 0, img.height));
+            let c = img.get(refX, refY);
+
+            let shapeSize = map(red(c), 0, 255, 0, 3);
+
+            let x = -r*cos(distortedAngle);
             let y = r*sin(distortedAngle);
-            ellipse(x, y, shapeSize);
+            rect(x, y, shapeSize);
         }
     }
    
+    noLoop();
+
 }
