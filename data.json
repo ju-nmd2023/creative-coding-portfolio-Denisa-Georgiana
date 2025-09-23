@@ -20,5 +20,12 @@
     "file": "experiments/TextDistortion.js",
     "name": "Text Distortion",
     "description": "For this experiment I wanted to play with movement and distorted text. The main idea is to create a more colourful piece when compared to the previous ones, and for the text to be legible. "
+  },
+
+  
+  {
+    "file": "experiments/Cubes.js",
+    "name": "Cube arrangement",
+    "description": "This experiment uses Georg Nees'Schotter (1968-1970) as an inspiration. In this assignment I aim to use simple a simple shape, the cube, in order to recreate his work. "
   }
 ]

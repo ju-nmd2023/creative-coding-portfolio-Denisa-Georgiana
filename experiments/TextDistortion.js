@@ -68,7 +68,6 @@ function draw() {
             rect(x, y, shapeSize);
         }
     }
-   
-    //noLoop();
+
 
 }
