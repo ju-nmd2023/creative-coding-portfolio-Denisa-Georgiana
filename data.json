@@ -16,16 +16,27 @@
     "description": "For this version of Unknown pleasures album cover I wanted to create some movement of the lines that reflect the movement of the radio wavelengths from CP 1919. "
   },
 
-    {
+  {
     "file": "experiments/TextDistortion.js",
     "name": "Text Distortion",
     "description": "For this experiment I wanted to play with movement and distorted text. The main idea is to create a more colourful piece when compared to the previous ones, and for the text to be legible. "
   },
 
-  
   {
     "file": "experiments/Cubes.js",
     "name": "Cube arrangement",
     "description": "This experiment uses Georg Nees'Schotter (1968-1970) as an inspiration. In this assignment I aim to use simple a simple shape, the cube, in order to recreate his work. "
+  },
+
+  {
+    "file": "experiments/Cubes2.js",
+    "name": "Cube experiment",
+    "description": "This experiment uses Georg Nees'Schotter (1968-1970) as an inspiration. In this assignment I aim to use simple a simple shape, the cube, and modify the concept by adding movement and simpler interactive techniques."
+  },
+
+  {
+    "file": "experiments/interactiveFlow.js",
+    "name": "Interactive Flow Field",
+    "description": "The idea behind this work is to create organic and flowing shapes through flowing field, particles and additional perlin noise. In my vision, I want to add an interactive element when the mouse is in close proximity of the particles."
   }
 ]
