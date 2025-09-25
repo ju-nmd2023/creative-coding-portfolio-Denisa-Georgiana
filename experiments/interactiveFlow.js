@@ -10,6 +10,7 @@ let fieldScale = 20;
 let noiseScale = 0.002; 
 let noiseSpeed = 0.002; 
 let angleMult = 2;
+let stepsPerFrame = 3;
 
 //variables grid
 let columns;
@@ -31,7 +32,7 @@ function setup() {
     flowField = new Array(columns*rows); 
 
     //creating many particles
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < 7000; i++) {
         particle.push(new Particle(random(width), random(height)));
     }
 
@@ -43,8 +44,9 @@ function setup() {
 function draw() {
     colorMode(HSB, 360, 100, 100, 100); 
     noStroke();
-    fill(20, 20, 20, 18);
+    fill(20, 20, 20, 10);
     rect(0, 0, width, height);
+    colorMode(HSB, 360, 100, 100, 100);
 
     //flow field setup
     let yOff = 0; 
@@ -67,10 +69,13 @@ function draw() {
 
     //particle
     for (let p of particle) {
+        for (let s = 0; s < stepsPerFrame; s++) {
         p.follow(flowField);
         p.update();
         p.edges();
-        p.show();
+        p.show();    
+        }
+       
     }
 }
 
@@ -94,6 +99,14 @@ class Particle {
         let y = floor(this.position.y / fieldScale);
         let index = constrain(x + y * columns, 0, flowField.length - 1);
         let force = flowField[index].copy().mult(0.3);
+       
+        let d = dist(mouseX, mouseY, this.position.x, this.position.y);
+        if (d < mouseColorRadius) {
+            let repel = p5.Vector.sub(this.position, createVector(mouseX, mouseY));
+            repel.setMag(map(d, 0, mouseColorRadius, 2.5, 0));
+            force.add(repel);
+        }
+       
         this.applyForce(force);
     }
 
@@ -120,7 +133,8 @@ class Particle {
 
 
         stroke(hueVal, 100, 100, 70);
-        strokeWeight(1.5);
+        let sw = map(this.velocity.mag(), 0, 2, 0.9, 1.8, true);
+        strokeWeight(sw);
         line(this.prev.x, this.prev.y, this.position.x, this.position.y);
         this.updatePrev();
     }
