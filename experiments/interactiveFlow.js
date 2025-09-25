@@ -16,6 +16,7 @@ let columns;
 let rows;
 let flowField = [];
 let zOff = 0; 
+let particle = [];
 
 
 //canvas setup
@@ -25,6 +26,9 @@ function setup() {
     rows = floor(height/fieldScale);
 
     flowField = new Array(columns*rows); 
+
+    //temporary particle
+    particle = new Particle(width/2, height/2);
 
 }
 
@@ -65,5 +69,37 @@ function draw() {
             line(0, 0, fieldScale, 0);
             pop();
         }
+    }
+
+    //particle
+    particle.update();
+    particle.show();
+}
+
+//Particle class
+class Particle {
+    constructor(x, y) {
+        this.position = createVector(x, y);
+        this.velocity = createVector(0, 0);
+        this.acceleration = createVector(0, 0);
+
+
+    }
+
+    //apply force
+    applyForce(force) {
+        this.acceleration.add(force);
+    }
+
+    update() {
+        this.velocity.add(this.acceleration);
+        this.position.add(this.velocity);
+        this.acceleration.mult(0);
+    }
+
+    show() {
+        stroke(255);
+        strokeWeight(2);
+        point(this.position.x, this.position.y);
     }
 }
