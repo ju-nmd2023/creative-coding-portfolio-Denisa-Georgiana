@@ -22,6 +22,13 @@ let particle = [];
 //variables mouse
 let mouseColorRadius = 60;
 
+//obstacle variables
+let obstacles = [
+    { pos: null, r: 110}, 
+    { pos: null, r: 70},
+    { pos: null, r: 160},
+    { pos: null, r: 80}
+];
 
 //canvas setup
 function setup() {
@@ -30,6 +37,12 @@ function setup() {
     rows = floor(height/fieldScale);
 
     flowField = new Array(columns*rows); 
+
+    //placing obstacles
+    obstacles[0].pos = createVector(width*0.4, height*0.3);
+    obstacles[1].pos = createVector(width*0.55, height*0.6);
+    obstacles[2].pos = createVector(width*0.7, height*0.85);
+    obstacles[3].pos = createVector(width*0.2, height*0.7);
 
     //creating many particles
     for (let i = 0; i < 7000; i++) {
@@ -77,6 +90,11 @@ function draw() {
         }
        
     }
+
+    //temporary obstacle view
+    noFill();
+    stroke(0, 0, 100, 40);
+    for (let o of obstacles) ellipse(o.pos.x, o.pos.y, o.r*2);
 }
 
 //Particle class
