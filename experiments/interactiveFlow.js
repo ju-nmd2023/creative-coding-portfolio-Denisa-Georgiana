@@ -47,7 +47,7 @@ function draw() {
     for (let y = 0; y < rows; y++) {
         let xOff = 0;
         for (let x = 0; x < columns; x++) {
-            let angle = noise(zOff, yOff, zOff) * TWO_PI * angleMult;
+            let angle = noise(xOff, yOff, zOff) * TWO_PI * angleMult;
             let vector = p5.Vector.fromAngle(angle); 
             flowField[x + y * columns] = vector;
             xOff += noiseScale * fieldScale;
@@ -59,24 +59,13 @@ function draw() {
     zOff += noiseSpeed;
 
 
-    //temporary line view
-    stroke(200); 
-    for (let y = 0; y < rows; y++) {
-        for (let x = 0; x < columns; x++) {
-            let index = x + y * columns;
-            let v = flowField[index]; 
-            push();
-            translate(x * fieldScale, y * fieldScale);
-            rotate(v.heading());
-            line(0, 0, fieldScale, 0);
-            pop();
-        }
-    }
+
 
     //particle
     for (let p of particle) {
         p.follow(flowField);
         p.update();
+        p.edges();
         p.show();
     }
 }
@@ -85,7 +74,7 @@ function draw() {
 class Particle {
     constructor(x, y) {
         this.position = createVector(x, y);
-        this.velocity = createVector(0, 0);
+        this.velocity = p5.Vector.random2D();
         this.acceleration = createVector(0, 0);
 
 
@@ -107,13 +96,33 @@ class Particle {
 
     update() {
         this.velocity.add(this.acceleration);
+        this.velocity.limit(2);
         this.position.add(this.velocity);
         this.acceleration.mult(0);
+
+        //particle reappearance
+        if (random(1) < 0.001) {
+            this.respawn();
+        }
     }
 
     show() {
         stroke(255);
         strokeWeight(2);
         point(this.position.x, this.position.y);
+    }
+
+    //wraping edges
+    edges() {
+        if (this.position.x > width) this.position.x = 0; 
+        if (this.position.x < 0) this.position.x = width; 
+        if (this.position.y > height) this.position.y = 0;
+        if (this.position.y < 0) this.position.y = height;
+    }
+
+    //reappearance
+    respawn() {
+        this.position = createVector(random(width), random(height));
+        this.velocity.mult(0);
     }
 }
