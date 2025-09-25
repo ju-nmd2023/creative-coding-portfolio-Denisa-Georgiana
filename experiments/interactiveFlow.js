@@ -51,4 +51,19 @@ function draw() {
     }
 
     zOff += noiseSpeed;
+
+
+    //temporary line view
+    stroke(200); 
+    for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < columns; x++) {
+            let index = x + y * columns;
+            let v = flowField[index]; 
+            push();
+            translate(x * fieldScale, y * fieldScale);
+            rotate(v.heading());
+            line(0, 0, fieldScale, 0);
+            pop();
+        }
+    }
 }
