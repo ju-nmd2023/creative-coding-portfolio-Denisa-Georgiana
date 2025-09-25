@@ -24,6 +24,8 @@ function preload() {
 
 //adding music
 let player;
+let isPlaying = false;
+
 
 function setup() {
     createCanvas (2068, 940);
@@ -32,7 +34,25 @@ function setup() {
     endColor = color(1191, 64, 191);
 
     //adding music
-    player = new Tone.Player("sound/sound/vladies__techno.mp3").toDestination();
+    player = new Tone.Player("sound/vladies__techno.mp3").toDestination();
+    player.loop = true;
+    player.autostart = false;
+}
+
+//mouse control
+function mousePressed() {
+    togglePlay();
+}
+
+async function togglePlay() {
+    await Tone.start();
+    if (!isPlaying) {
+        player.start();
+        isPlaying = true;
+    } else {
+        player.stop();
+        isPlaying = false;
+    }
 }
 
 function draw() {
