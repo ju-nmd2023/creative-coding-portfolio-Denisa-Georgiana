@@ -27,8 +27,10 @@ function setup() {
 
     flowField = new Array(columns*rows); 
 
-    //temporary particle
-    particle = new Particle(width/2, height/2);
+    //creating many particles
+    for (let i = 0; i < 1000; i++) {
+        particle.push(new Particle(random(width), random(height)));
+    }
 
 }
 
@@ -72,8 +74,11 @@ function draw() {
     }
 
     //particle
-    particle.update();
-    particle.show();
+    for (let p of particle) {
+        p.follow(flowField);
+        p.update();
+        p.show();
+    }
 }
 
 //Particle class
@@ -89,6 +94,15 @@ class Particle {
     //apply force
     applyForce(force) {
         this.acceleration.add(force);
+    }
+
+    //follow
+    follow(flowField) {
+        let x = floor(this.position.x / fieldScale);
+        let y = floor(this.position.y / fieldScale);
+        let index = x + y * columns;
+        let force = flowField[index];
+        this.applyForce(force);
     }
 
     update() {
