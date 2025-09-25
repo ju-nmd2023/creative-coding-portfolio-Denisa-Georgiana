@@ -32,11 +32,12 @@ function setup() {
         particle.push(new Particle(random(width), random(height)));
     }
 
+    background(20);
+
 }
 
 //draw
 function draw() {
-    background(20);
     colorMode(RGB); 
     noStroke();
     fill(20, 20, 20, 18);
@@ -76,6 +77,7 @@ class Particle {
         this.position = createVector(x, y);
         this.velocity = p5.Vector.random2D();
         this.acceleration = createVector(0, 0);
+        this.prev = this.position.copy();
 
 
     }
@@ -89,7 +91,7 @@ class Particle {
     follow(flowField) {
         let x = floor(this.position.x / fieldScale);
         let y = floor(this.position.y / fieldScale);
-        let index = x + y * columns;
+        let index = constrain(x + y * columns, 0, flowField.length - 1);
         let force = flowField[index];
         this.applyForce(force);
     }
@@ -109,7 +111,12 @@ class Particle {
     show() {
         stroke(255);
         strokeWeight(2);
-        point(this.position.x, this.position.y);
+        line(this.prev.x, this.prev.y, this.position.x, this.position.y);
+        this.updatePrev();
+    }
+
+    updatePrev() {
+        this.prev.set(this.position);
     }
 
     //wraping edges
@@ -124,5 +131,6 @@ class Particle {
     respawn() {
         this.position = createVector(random(width), random(height));
         this.velocity.mult(0);
+        this.updatePrev();
     }
 }
