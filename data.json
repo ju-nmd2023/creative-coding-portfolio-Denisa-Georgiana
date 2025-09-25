@@ -32,5 +32,11 @@
     "file": "experiments/interactiveFlow.js",
     "name": "Interactive Flow Field",
     "description": "The idea behind this work is to create organic and flowing shapes through flowing field, particles and additional perlin noise. In my vision, I want to add an interactive element when the mouse is in close proximity of the particles."
+  },
+
+   {
+    "file": "experiments/flowField2.js",
+    "name": "Flow Field Obstacles",
+    "description": "In this version of the interactive flow field I want to incorporate voids in the design that repel particles with the help of obstacles. The concept behind this is to create even more organic shapes that follow the low of the design more naturally. The idea is to repurpose the original code and expand on the visual appearance."
   }
 ]
