@@ -91,10 +91,6 @@ function draw() {
        
     }
 
-    //temporary obstacle view
-    noFill();
-    stroke(0, 0, 100, 40);
-    for (let o of obstacles) ellipse(o.pos.x, o.pos.y, o.r*2);
 }
 
 //Particle class
@@ -118,11 +114,22 @@ class Particle {
         let index = constrain(x + y * columns, 0, flowField.length - 1);
         let force = flowField[index].copy().mult(0.3);
        
+        //mouse repel
         let d = dist(mouseX, mouseY, this.position.x, this.position.y);
         if (d < mouseColorRadius) {
             let repel = p5.Vector.sub(this.position, createVector(mouseX, mouseY));
             repel.setMag(map(d, 0, mouseColorRadius, 2.5, 0));
             force.add(repel);
+        }
+
+        //obstale repel
+        for (let o of obstacles) {
+            let distObst = p5.Vector.dist(this.position, o.pos);
+            if (distObst < o.r) {
+                let repelO = p5.Vector.sub(this.position, o.pos);
+                repelO.setMag(map(distObst, 0, o.r, 3.0, 0));
+                force.add(repelO);
+            }
         }
        
         this.applyForce(force);

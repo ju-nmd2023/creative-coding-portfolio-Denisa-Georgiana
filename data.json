@@ -38,5 +38,11 @@
     "file": "experiments/flowField2.js",
     "name": "Flow Field Obstacles",
     "description": "In this version of the interactive flow field I want to incorporate voids in the design that repel particles with the help of obstacles. The concept behind this is to create even more organic shapes that follow the low of the design more naturally. The idea is to repurpose the original code and expand on the visual appearance."
+  },
+
+  {
+    "file": "experiments/distortionMusic.js",
+    "name": "Distortion Music",
+    "description": "In this version of the interactive flow field I want to incorporate voids in the design that repel particles with the help of obstacles. The concept behind this is to create even more organic shapes that follow the low of the design more naturally. The idea is to repurpose the original code and expand on the visual appearance."
   }
 ]
