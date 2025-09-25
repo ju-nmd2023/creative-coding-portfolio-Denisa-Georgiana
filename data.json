@@ -29,12 +29,6 @@
   },
 
   {
-    "file": "experiments/Cubes2.js",
-    "name": "Cube experiment",
-    "description": "This experiment uses Georg Nees'Schotter (1968-1970) as an inspiration. In this assignment I aim to use simple a simple shape, the cube, and modify the concept by adding movement and simpler interactive techniques."
-  },
-
-  {
     "file": "experiments/interactiveFlow.js",
     "name": "Interactive Flow Field",
     "description": "The idea behind this work is to create organic and flowing shapes through flowing field, particles and additional perlin noise. In my vision, I want to add an interactive element when the mouse is in close proximity of the particles."
