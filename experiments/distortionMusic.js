@@ -31,17 +31,43 @@ function setup() {
     createCanvas (2068, 940);
     rectMode(CENTER);
     startColor = color(127,255,0);
-    endColor = color(1191, 64, 191);
+    endColor = color(191, 64, 191);
 
     //adding music
     player = new Tone.Player("sound/vladies__techno.mp3").toDestination();
     player.loop = true;
     player.autostart = false;
+
+    //volume and playback
+    player.volume.value = -8;
+    player.playbackRate = 1.0; 
 }
 
 //mouse control
 function mousePressed() {
     togglePlay();
+}
+function keyPressed() {
+    if (key === ' ') {
+        togglePlay();
+        return false;
+    }
+
+    if (key === 'ArrowUp') {
+        player.volume.value += 1; 
+    }
+
+    if (key === 'ArrowDown') {
+        player.volume.value -= 1;
+    }
+
+    if (key === 'ArrowRight') {
+        player.playbackRate += 0.1;
+    }
+
+    if (key === 'ArrowLeft') {
+        player.playbackRate = max(0.1, player.playbackRate - 0.1);
+    }
 }
 
 async function togglePlay() {

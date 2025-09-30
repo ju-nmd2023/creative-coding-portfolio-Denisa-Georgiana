@@ -1,10 +1,5 @@
 [
   {
-    "file": "experiments/example.js",
-    "name": "Name of your experiment",
-    "description": "Explains the what and the why. What is the main idea? What is the purpose? Describes the coding process and implementation choices and gives a high level system overview."
-  },
-  {
     "file": "experiments/JoyDivision.js",
     "name": "Joy Division Original Version",
     "description": "The idea behind this experiment is to recreate the album cover of Unknown Pleasures by Joy Division. This design represents the wavelengths emitted by the first discovered pulsar CP 1919, which was later transformed into an album cover by Peter Saville. This aims to explore how scientific data can be transformed into digital art by uing perlin noise. "
