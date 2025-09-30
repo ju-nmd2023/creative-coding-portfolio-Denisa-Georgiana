@@ -1,3 +1,11 @@
+/*
+----- Coding Tutorial by Ruth & Tim ----- 
+Name: Cubic Dissaray
+Tutorial: https://generativeartistry.com/tutorials/cubic-disarray/
+----------------------------------------
+*/
+
+
 //variables
 let randomDisplacement = 15; 
 let rotateMultiplier = 20;
